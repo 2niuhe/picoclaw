@@ -374,6 +374,7 @@ type ChannelsConfig struct {
 	Pico       PicoConfig       `json:"pico"        yaml:"pico,omitempty"`
 	PicoClient PicoClientConfig `json:"pico_client" yaml:"pico_client,omitempty"`
 	IRC        IRCConfig        `json:"irc"         yaml:"irc,omitempty"`
+	Mattermost MattermostConfig `json:"mattermost"  yaml:"mattermost,omitempty"`
 }
 
 // GroupTriggerConfig controls when the bot responds in group chats.
@@ -626,6 +627,17 @@ type IRCConfig struct {
 	GroupTrigger       GroupTriggerConfig  `json:"group_trigger,omitempty"    yaml:"-"`
 	Typing             TypingConfig        `json:"typing,omitempty"           yaml:"-"`
 	ReasoningChannelID string              `json:"reasoning_channel_id"       yaml:"-"`
+}
+
+type MattermostConfig struct {
+	Enabled            bool                `json:"enabled"                 env:"PICOCLAW_CHANNELS_MATTERMOST_ENABLED"`
+	URL                string              `json:"url"                     env:"PICOCLAW_CHANNELS_MATTERMOST_URL"`
+	BotToken           string              `json:"bot_token"               env:"PICOCLAW_CHANNELS_MATTERMOST_BOT_TOKEN"`
+	AllowFrom          FlexibleStringSlice `json:"allow_from"              env:"PICOCLAW_CHANNELS_MATTERMOST_ALLOW_FROM"`
+	GroupTrigger       GroupTriggerConfig  `json:"group_trigger,omitempty"`
+	Typing             TypingConfig        `json:"typing,omitempty"`
+	Placeholder        PlaceholderConfig   `json:"placeholder,omitempty"`
+	ReasoningChannelID string              `json:"reasoning_channel_id"    env:"PICOCLAW_CHANNELS_MATTERMOST_REASONING_CHANNEL_ID"`
 }
 
 type HeartbeatConfig struct {
